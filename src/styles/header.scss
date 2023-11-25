@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 3rem 6rem;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  box-shadow: 0 0.2rem 0.4rem 0 var(--shadow-elements);
+  min-width: 100%;
+  background-color: var(--element-color);
+  color: var(--text);
+  @media (max-width: 500px) {
+    padding: 3rem 4rem;
+  }
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+  }
+  &__mode {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    p {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/*------ Settings ------*/
+.container {
+  --color: var(--text);
+  --size: 2.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  // position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+}
+
+.container .moon {
+  // position: absolute;
+  animation: keyframes-fill 0.5s;
+}
+
+.container .sun {
+  // position: absolute;
+  display: none;
+  animation: keyframes-fill 0.5s;
+}
+
+/* ------ On check event ------ */
+.container input:checked ~ .moon {
+  display: none;
+}
+
+.container input:checked ~ .sun {
+  display: block;
+}
+
+/* ------ Hide the default checkbox ------ */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-fill {
+  0% {
+    transform: rotate(-360deg) scale(0);
+    opacity: 0;
+  }
+
+  75% {
+    transform: rotate(25deg);
+  }
+}

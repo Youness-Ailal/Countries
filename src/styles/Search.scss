@@ -1,0 +1,40 @@
+@mixin inputBox() {
+  padding: 1.4rem 3rem;
+  width: 100%;
+  font-size: 1.6rem;
+  border: 1px solid var(--shadow-elements);
+  box-shadow: 0 0 0.3rem 0.1rem var(--shadow-country);
+  border-radius: 0.5rem;
+  transition: 0.2s;
+  outline-offset: 0.5rem;
+  &:focus {
+    outline: 1px solid var(--border-color);
+    outline-offset: 0;
+  }
+}
+
+.search {
+  position: relative;
+  font-size: 2rem;
+  min-width: 30%;
+  input {
+    @include inputBox;
+    background-color: var(--element-color);
+    color: var(--text);
+    outline: 1px solid transparent;
+    padding-left: 7rem;
+    &::placeholder {
+      font-size: 1.5rem;
+      color: var(--placeholder-color);
+    }
+  }
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 3rem;
+    transform: translateY(-50%);
+    path {
+      stroke: var(--placeholder-color);
+    }
+  }
+}

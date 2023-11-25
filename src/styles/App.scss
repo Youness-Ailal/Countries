@@ -1,0 +1,25 @@
+.wraper {
+  margin: 0 auto;
+  max-width: 150rem;
+  padding: 0 2rem;
+  margin-top: 5rem;
+}
+.hero {
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+}
+
+.countries {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  row-gap: 5rem;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}

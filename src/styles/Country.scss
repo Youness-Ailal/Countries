@@ -1,0 +1,123 @@
+.country {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 2rem 0.5rem var(--shadow-country);
+  background-color: var(--element-color);
+  min-height: 38rem;
+  width: 30rem;
+  color: var(--text);
+  overflow: hidden;
+  border: 1px solid transparent;
+
+  transition: 0.2s;
+  &:hover {
+    border: 1px solid var(--placeholder-color);
+  }
+  &:active {
+    scale: 0.95;
+  }
+  img {
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+  }
+  &__bottom {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    h2 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+}
+.back {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  color: var(--text);
+  background-color: var(--element-color);
+  box-shadow: 0 0 0.5rem 0.1rem var(--shadow-elements);
+}
+
+.country_details {
+  font-size: 1.8rem;
+  margin: 5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10rem;
+  flex-wrap: wrap;
+
+  img {
+    width: 55rem;
+    height: 35rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    @media (max-width: 500px) {
+      width: 40rem;
+      height: 30rem;
+    }
+  }
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
+    row-gap: 0.5rem;
+    list-style: none;
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.info {
+  max-width: 80rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  h1 {
+    line-height: 1.1;
+    font-size: 6rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    @media (max-width: 500px) {
+      font-size: 4rem;
+    }
+  }
+  img {
+    width: 4rem;
+    max-height: 4rem;
+  }
+}
+
+.borders {
+  margin-top: 2rem;
+  max-width: 55rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  span {
+    padding: 0.2rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    color: var(--text);
+    background-color: var(--element-color);
+    box-shadow: 0 0 0.1rem 0.02rem var(--shadow-elements);
+  }
+}

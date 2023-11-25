@@ -1,0 +1,63 @@
+@mixin inputBox() {
+  padding: 1.4rem 3rem;
+  width: 100%;
+  font-size: 1.6rem;
+  border: 1px solid var(--shadow-elements);
+  box-shadow: 0 0 0.3rem 0.1rem var(--shadow-country);
+  border-radius: 0.5rem;
+  transition: 0.2s;
+  outline-offset: 0.5rem;
+  &:focus,
+  &:checked {
+    outline: 1px solid var(--dark-blue-2);
+    outline-offset: 0;
+  }
+}
+.region {
+  color: var(--text);
+  width: 100%;
+  max-width: 25rem;
+  cursor: pointer;
+  position: relative;
+  &__top {
+    cursor: pointer;
+    @include inputBox();
+    background-color: var(--element-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include inputBox();
+    padding: 1rem 0;
+    background-color: var(--element-color);
+
+    border: 1px solid var(--shadow-elements);
+    box-shadow: 0 0 0.5rem 0.1rem var(--shadow-country);
+    position: absolute;
+    opacity: 1;
+    transform: translateY(0);
+
+    transition: 0.2s;
+
+    div {
+      padding: 0.8rem 3rem;
+      width: 100%;
+      transition: 0.1s;
+      &:hover {
+        background-color: var(--bg-color);
+      }
+    }
+  }
+}
+
+.hide {
+  opacity: 0;
+  transform: translateY(-1rem);
+  user-select: none;
+  pointer-events: none;
+}

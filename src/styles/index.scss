@@ -1,0 +1,51 @@
+:root {
+  --bg-color: hsl(207, 26%, 17%);
+  --element-color: hsl(209, 23%, 22%);
+  --text: hsl(0, 0%, 100%);
+  --placeholder-color: rgb(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.5);
+  --shadow-elements: rgba(255, 255, 255, 0.2);
+  --shadow-country: rgba(255, 255, 255, 0.04);
+}
+[data-theme="light"] {
+  --bg-color: hsl(0, 0%, 100%);
+  --element-color: hsl(0, 0%, 97%);
+  --text: hhsl(207, 26%, 17%);
+  --placeholder-color: hsl(0, 0%, 52%);
+  --border-color: rgba(0, 0, 0, 0.5);
+  --shadow-elements: rgba(0, 0, 0, 0.2);
+  --shadow-country: rgba(0, 0, 0, 0.1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(8px, 1vw, 10px);
+}
+body {
+  font-family: monospace;
+  line-height: 1.4;
+  min-height: 100dvh;
+  background-color: var(--bg-color);
+  color: var(--text);
+  // overflow-x: hidden;
+  // background-color: background;
+}
+input,
+select,
+a,
+button {
+  font-family: inherit;
+}
+button {
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  &:active {
+    scale: 0.98;
+  }
+}
