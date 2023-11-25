@@ -1,4 +1,4 @@
-import { SearchIcon } from "./SearchIcon";
+import { searchIcon } from "./SearchIcon";
 
 export default function Search({ query, setQuery, isDisabled }) {
   return (
@@ -11,7 +11,7 @@ export default function Search({ query, setQuery, isDisabled }) {
         placeholder="Search for a country..."
         required
       />
-      <SearchIcon className="search__icon"></SearchIcon>
+      <searchIcon className="search__icon"></searchIcon>
     </div>
   );
 }

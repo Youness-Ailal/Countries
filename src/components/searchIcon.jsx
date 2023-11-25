@@ -1,5 +1,5 @@
 import "../styles/Search.scss";
-export const SearchIcon = props => (
+export const searchIcon = props => (
   <svg
     aria-hidden="true"
     fill="none"
