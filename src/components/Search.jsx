@@ -1,5 +1,5 @@
-import { searchIcon } from "./SearchIcon";
-
+import { CiSearch } from "react-icons/ci";
+import "../styles/Search.scss";
 export default function Search({ query, setQuery, isDisabled }) {
   return (
     <div className="search">
@@ -11,7 +11,7 @@ export default function Search({ query, setQuery, isDisabled }) {
         placeholder="Search for a country..."
         required
       />
-      <searchIcon className="search__icon"></searchIcon>
+      <CiSearch className="search__icon"></CiSearch>
     </div>
   );
 }
