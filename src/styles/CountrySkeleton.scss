@@ -24,3 +24,53 @@
   padding: 0 2rem;
   margin-bottom: 1rem;
 }
+
+.skeleton2 {
+  margin: 5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10rem;
+  flex-wrap: wrap;
+  &__img {
+    width: 55rem;
+    height: 35rem;
+    border-radius: 0.5rem;
+    @media (max-width: 500px) {
+      width: 40rem;
+      height: 30rem;
+    }
+  }
+  &__info {
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
+    row-gap: 1rem;
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__title {
+    height: 3rem;
+    width: 38rem;
+    margin-bottom: 2rem;
+    @media (max-width: 500px) {
+      font-size: 4rem;
+    }
+  }
+  &__data {
+    height: 2rem;
+    width: 28rem;
+  }
+  &__borders {
+    margin-top: 2rem;
+    max-width: 30rem;
+    height: 2rem;
+  }
+}

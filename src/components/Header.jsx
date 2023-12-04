@@ -3,36 +3,41 @@ const ThemeContext = createContext();
 
 import "../styles/header.scss";
 export default function Header() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  function setDarkMode() {
+    localStorage.setItem("theme", "dark");
+  }
+  function setLightMode() {
+    localStorage.setItem("theme", "light");
+  }
+  const handleThemeToggle = () => {
+    setTheme(prevTheme => {
+      const newTheme = prevTheme === "dark" ? "light" : "dark";
+      newTheme === "light" ? setLightMode() : setDarkMode();
+      // document.querySelector("body").setAttribute("data-theme", newTheme);
+      return newTheme;
+    });
+  };
+  useEffect(() => {
+    document.querySelector("body").setAttribute("data-theme", theme);
+  }, [theme]);
   return (
     <header className="header ">
       <h1>Where in the world?</h1>
-      <ThemeSwitcher></ThemeSwitcher>
+      <ThemeSwitcher
+        onThemeSwitch={handleThemeToggle}
+        theme={theme}></ThemeSwitcher>
     </header>
   );
 }
 
-function ThemeSwitcher() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  function toggleTheme() {
-    setIsDarkMode(prev => !prev);
-  }
-  useEffect(() => {
-    function setDarkMode() {
-      document.querySelector("body").setAttribute("data-theme", "dark");
-    }
-    function setLightkMode() {
-      document.querySelector("body").setAttribute("data-theme", "light");
-    }
-    isDarkMode ? setDarkMode() : setLightkMode();
-  }, [isDarkMode]);
-
+function ThemeSwitcher({ onThemeSwitch, theme }) {
   return (
     <div className="header__mode ">
       <label className="container ">
         <input
-          onChange={toggleTheme}
-          checked={isDarkMode}
+          onChange={onThemeSwitch}
+          checked={theme === "dark"}
           type="checkbox"></input>
         <svg
           viewBox="0 0 384 512"

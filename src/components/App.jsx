@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
-import "../styles/App.scss";
-import Header from "./Header";
-import Search from "./Search";
-import SelectRegion from "./SelectRegion.jsx";
-import CountryCard from "./CountryCard.jsx";
-import { useCountries } from "../custom-hooks/useCountries.jsx";
-import CountryPage from "./CountryPage.jsx";
-import { motion } from "framer-motion";
-import CountrySkeleton from "./CountrySkeleton.jsx";
-import { SkeletonTheme } from "react-loading-skeleton";
-export default function App() {
+import { useState, useEffect, useReducer } from "react";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import { useCountries } from "../custom-hooks/useCountries";
+import CountryPage from "../pages/CountryPage";
+
+function App() {
   const [region, setRegion] = useState("");
   const [query, setQuery] = useState("");
   const [countries, dataLoading] = useCountries();
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState([]);
-
   useEffect(() => {
     if (region && query) {
       const regionCountries = countries.filter(country => {
@@ -44,6 +39,7 @@ export default function App() {
       setFilteredCountries(countries);
     }
   }, [query, countries]);
+
   useEffect(() => {
     if (region) {
       const regionCountries = countries.filter(
@@ -54,74 +50,34 @@ export default function App() {
       setFilteredCountries(countries);
     }
   }, [region, countries]);
-  useEffect(() => {
-    if (selectedCountry) {
-      document.title = selectedCountry.name.common;
-    }
-    return () => (document.title = "Countries");
-  }, [selectedCountry]);
 
   return (
-    <main>
-      <Header></Header>
-      <div style={{ display: `${selectedCountry ? "none" : "block"}` }}>
-        <Container className={"hero"}>
-          <div className="hero__top">
-            <Search
-              isDisabled={dataLoading}
-              setQuery={setQuery}
-              query={query}></Search>
-            <SelectRegion
-              disabled={dataLoading}
-              region={region}
-              setRegion={setRegion}></SelectRegion>
-          </div>
-        </Container>
-        <SkeletonTheme
-          baseColor="hsl(209, 23%, 22%)"
-          highlightColor="hsl(207, 26%, 17%)">
-          <Container className={"countries"}>
-            {dataLoading && <CountrySkeleton cards={32}></CountrySkeleton>}
-            {filteredCountries?.map(el => (
-              <CountryCard
-                onSelectCountry={() => setSelectedCountry(el)}
-                country={el}
-                key={el.name.common}></CountryCard>
-            ))}
-          </Container>
-        </SkeletonTheme>
-      </div>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            index
+            element={
+              <HomePage
+                region={region}
+                setRegion={setRegion}
+                query={query}
+                setQuery={setQuery}
+                dataLoading={dataLoading}
+                selectedCountry={selectedCountry}
+                setSelectedCountry={setSelectedCountry}
+                filteredCountries={filteredCountries}
+                setFilteredCountries={setFilteredCountries}></HomePage>
+            }></Route>
 
-      {selectedCountry && (
-        <Container className={"country-page"}>
-          <CountryPage
-            onClose={() => setSelectedCountry(null)}
-            country={selectedCountry}></CountryPage>
-        </Container>
-      )}
-    </main>
+          <Route
+            path="/:countryName"
+            // path={`country`}
+            element={<CountryPage />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
-function Container({ className, children }) {
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className={`wraper ${className}`}>
-      {children}
-    </motion.div>
-  );
-}
+export default App;
